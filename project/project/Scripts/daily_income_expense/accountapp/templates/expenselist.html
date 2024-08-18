@@ -1,0 +1,70 @@
+{%extends 'sidebar.html'%} {%block body%}
+
+<h1>Expense List</h1>
+
+<form action="{%url 'expenseapp:expenseapp_search'%}" method="post">
+    {%csrf_token%}
+    <textarea name="srch" id="" rows="3" cols="60"></textarea>
+    <input type="submit" value="search">
+</form>
+{%if expl%}
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Expense</th>
+        <th>Expense_type</th>
+        <th>Expense_date</th>
+        <th>Description</th>
+        <th>User</th>
+        <th colspan='3'>Action</th>
+
+    </tr>
+    
+    {%for i in expl%}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.expense}}</td>
+        <td>{{i.expense_type}}</td>
+        <td>{{i.expense_date}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.user}}</td>
+        <td><a href="delete/{{i.id}}">Delete</a></td>
+        <td><a href="edit/{{i.id}}">Edit</a></td>
+    </tr>
+    {%endfor%}
+
+</table>
+{%else%}
+<h1>No Record Found...</h1>
+{%endif%}
+<style>
+    .rside{
+        width:200px;
+        height:100%;
+        background-color: aquamarine;
+        position:fixed;
+        right:0%;
+        top:0%
+    }
+    h3{
+        margin:10px;
+        padding:10px;
+    }
+    .rside a{
+        text-decoration: none;
+    }
+</style>
+<div class="rside">
+
+    <h2>Sort by expense_type</h2>
+    <h3><a href="{%url 'expenseapp:list2'%}"> All</a></h3>
+    {%for i in expt%}
+    <h3><a href="{%url 'expenseapp:ext1' i%}">{{i}}</a></h3>
+    {%endfor%}
+</div>
+
+
+
+
+
+{%endblock%}

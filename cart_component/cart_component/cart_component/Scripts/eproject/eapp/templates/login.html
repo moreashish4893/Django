@@ -1,0 +1,18 @@
+{%include 'navbar.html'%}
+<h1>LOGIN FORM</h1>
+<form action="" method="post">
+    {%csrf_token%}
+    <table class="table">
+        <tr>
+            <h3>UserName</h3>
+            <input type="text" name="username">
+
+            <h3>PassWord</h3>
+            <input type="text" name="password">
+        </tr>
+        <tr>
+            <td><input type="submit" value="login"></td>
+            <td><input type="reset" value="reset"></td>
+        </tr>
+    </table>
+</form>
